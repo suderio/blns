@@ -30,11 +30,11 @@ public class BlnsArgumentProvider implements ArgumentsProvider {
     }
 
     @Override
-    public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) throws Exception {
-        return jsonArray.stream().map(s -> Arguments.of(s));
+    public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) {
+        return Stream.of(jsonArray.toArray()).map(s -> Arguments.of(s.toString()));
     }
 
     public Stream<String> provideStrings() {
-        return jsonArray.stream();
+        return Stream.of(jsonArray.toArray()).map(Object::toString);
     }
 }

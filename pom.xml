@@ -9,7 +9,7 @@
     <version>1.0.0-SNAPSHOT</version>
     <description>Big List of Naughty Strings for Testing</description>
 
-    <url>https://suderio.github.io/big-list-of-naughty-strings</url>
+    <url>https://suderio.github.io/big-list-of-naughty-strings/</url>
 
     <organization>
         <name>Technearts</name>
@@ -194,11 +194,6 @@
                     <version>0.12</version>
                 </plugin>
                 <plugin>
-                    <groupId>org.openclover</groupId>
-                    <artifactId>clover-maven-plugin</artifactId>
-                    <version>4.4.1</version>
-                </plugin>
-                <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-checkstyle-plugin</artifactId>
                     <version>3.1.1</version>
@@ -324,18 +319,6 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.openclover</groupId>
-                <artifactId>clover-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>pre-site</phase>
-                        <goals>
-                            <goal>instrument</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
                 <configuration>
@@ -347,6 +330,8 @@
                 <artifactId>site-maven-plugin</artifactId>
                 <configuration>
                     <message>Creating site for ${project.version}</message>
+                    <repositoryOwner>suderio</repositoryOwner>
+                    <repositoryName>${project.artifactId}</repositoryName>
                 </configuration>
                 <executions>
                     <execution>
@@ -378,11 +363,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jxr-plugin</artifactId>
             </plugin>
-            <!-- Surefire Report cannot be shown due to errors in String processing!!! -->
-            <plugin>
-                <groupId>org.openclover</groupId>
-                <artifactId>clover-maven-plugin</artifactId>
-            </plugin>
+            <!-- Surefire Report & clover cannot be shown due to errors in String processing!!! -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>

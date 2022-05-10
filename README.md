@@ -10,6 +10,7 @@ Add this to your pom.xml:
 
 ```xml
 <dependencies>
+  ...  
   <dependency>
     <groupId>net.technearts</groupId>
     <artifactId>big-list-of-naughty-strings</artifactId>

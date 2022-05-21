@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>net.technearts</groupId>
     <artifactId>big-list-of-naughty-strings</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.0-SNAPSHOT</version>
     <description>Big List of Naughty Strings for Testing</description>
 
     <url>https://suderio.github.io/blns/</url>
@@ -32,10 +33,10 @@
 
     <scm>
         <url>https://github.com/suderio/blns</url>
-        <connection>scm:git:https@github.com:suderio/blns.git</connection>
-        <developerConnection>scm:git:https@github.com:suderio/blns.git</developerConnection>
-      <tag>1.0.0</tag>
-  </scm>
+        <connection>scm:git:https://github.com/suderio/blns.git</connection>
+        <developerConnection>scm:git:https://github.com/suderio/blns.git</developerConnection>
+        <tag>1.0.0</tag>
+    </scm>
 
     <issueManagement>
         <url>https://github.com/suderio/blns/issues</url>
@@ -116,7 +117,7 @@
                     <artifactId>maven-resources-plugin</artifactId>
                     <version>3.2.0</version>
                 </plugin>
-                 <plugin>
+                <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>3.0.0-M6</version>

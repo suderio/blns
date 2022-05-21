@@ -7,7 +7,7 @@
     <version>1.0.1-SNAPSHOT</version>
     <description>Big List of Naughty Strings for Testing</description>
 
-    <url>https://suderio.github.io/big-list-of-naughty-strings/</url>
+    <url>https://suderio.github.io/blns/</url>
 
     <organization>
         <name>Technearts</name>
@@ -17,7 +17,7 @@
     <licenses>
         <license>
             <name>MIT License</name>
-            <url>https://raw.githubusercontent.com/suderio/big-list-of-naughty-strings/master/LICENSE</url>
+            <url>https://raw.githubusercontent.com/suderio/blns/master/LICENSE</url>
             <distribution>repo</distribution>
         </license>
     </licenses>
@@ -32,23 +32,15 @@
 
     <scm>
         <url>https://github.com/suderio/big-list-of-naughty-strings</url>
-        <connection>scm:git:http://github.com/suderio/big-list-of-naughty-strings.git</connection>
-        <developerConnection>scm:git:https://github.com/suderio/big-list-of-naughty-strings.git</developerConnection>
+        <connection>scm:git:git@github.com:suderio/blns.git</connection>
+        <developerConnection>scm:git:git@github.com:suderio/blns.git</developerConnection>
       <tag>1.0.0</tag>
   </scm>
 
     <issueManagement>
-        <url>https://github.com/suderio/big-list-of-naughty-strings/issues</url>
+        <url>https://github.com/suderio/blns/issues</url>
         <system>github</system>
     </issueManagement>
-
-    <distributionManagement>
-        <repository>
-            <id>github</id>
-            <name>GitHub suderio Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/suderio/big-list-of-naughty-strings</url>
-        </repository>
-    </distributionManagement>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -58,13 +50,15 @@
         <github.global.server>github</github.global.server>
         <dependency.locations.enabled>false</dependency.locations.enabled>
     </properties>
-
+    <prerequisites>
+        <maven>3.6.0</maven>
+    </prerequisites>
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>org.junit</groupId>
                 <artifactId>junit-bom</artifactId>
-                <version>5.8.2</version>
+                <version>5.9.0-M1</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -258,4 +252,142 @@
             </plugin>
         </plugins>
     </build>
+    <profiles>
+        <profile>
+            <id>release</id>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>ossrh</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+                </snapshotRepository>
+                <repository>
+                    <id>ossrh</id>
+                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                </repository>
+                <site>
+                    <id>site</id>
+                    <url>${project.url}</url>
+                </site>
+            </distributionManagement>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>3.2.1</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>3.4.0</version>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>3.0.1</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>1.6.13</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>ossrh</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-release-plugin</artifactId>
+                        <version>3.0.0-M5</version>
+                        <configuration>
+                            <autoVersionSubmodules>true</autoVersionSubmodules>
+                            <useReleaseProfile>false</useReleaseProfile>
+                            <releaseProfiles>release</releaseProfiles>
+                            <goals>deploy</goals>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-project-info-reports-plugin</artifactId>
+                        <version>3.3.0</version>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-jxr-plugin</artifactId>
+                        <version>3.2.0</version>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-surefire-report-plugin</artifactId>
+                        <version>3.0.0-M6</version>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-site-plugin</artifactId>
+                        <version>4.0.0-M1</version>
+                        <configuration>
+                            <locales>en,pt</locales>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>com.github.github</groupId>
+                        <artifactId>site-maven-plugin</artifactId>
+                        <version>0.12</version>
+                        <configuration>
+                            <message>Creating site for ${project.version}</message>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>site</goal>
+                                </goals>
+                                <phase>site</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+            <reporting>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-plugin-plugin</artifactId>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-site-plugin</artifactId>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-project-info-reports-plugin</artifactId>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-jxr-plugin</artifactId>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-surefire-report-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </reporting>
+        </profile>
+    </profiles>
 </project>

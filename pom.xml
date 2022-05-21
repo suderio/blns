@@ -4,7 +4,7 @@
 
     <groupId>net.technearts</groupId>
     <artifactId>big-list-of-naughty-strings</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
     <name>Big List of Naughty Strings for Testing</name>
     <description>Big List of Naughty Strings for Testing</description>
 

@@ -4,7 +4,7 @@
 
     <groupId>net.technearts</groupId>
     <artifactId>big-list-of-naughty-strings</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <description>Big List of Naughty Strings for Testing</description>
 
     <url>https://suderio.github.io/blns/</url>
